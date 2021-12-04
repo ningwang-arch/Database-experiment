@@ -1,0 +1,11 @@
+images/
+
+output/
+
+.vscode/
+
+*.o
+
+main
+
+mysql.ini
