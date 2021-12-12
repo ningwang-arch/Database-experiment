@@ -414,13 +414,14 @@ void App::init()
             root["message"] = "success";
             std::string token = token_generated();
             std::string pass = pass_generated(username, token);
-            std::string bauth = bauth_get(username, password);
+            std::string bauth = bauth_get(username, pass);
             std::string set = "Access-Control-Expose-Headers: Authorization\n";
             extra_headers = set + bauth;
             this->server->addAuthentication(username, pass, token);
         } else {
             root["status"] = HTTP_OK;
             root["message"] = "fail";
+            root["error"] = "用户名或密码错误";
         }
         cb(conn, Json::writeString(Json::StreamWriterBuilder(), root).c_str(), extra_headers.c_str());
     });
